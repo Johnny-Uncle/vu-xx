@@ -1,9 +1,9 @@
 /* *
- * 过滤特殊字符 
+ * 过滤特殊字符
  */
 export function stripscript(str) {
-    var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）&;—|{ }【】‘；：”“'。，、？]")
-    var rs = "";
+    let  pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）&;—|{ }【】‘；：”“'。，、？]")
+    let rs = "";
     for (var i = 0; i < str.length; i++) {
         rs = rs + str.substr(i, 1).replace(pattern, '');
     }
@@ -13,7 +13,7 @@ export function stripscript(str) {
  * 验证邮箱
  */
 export function validateEmail(value){
-    let reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/; 
+    let reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
     if( !reg.test(value)){
         return true
     }else{
@@ -21,7 +21,7 @@ export function validateEmail(value){
     }
 }
 /**
- * 验证密码 6至20位的字母+数字 
+ * 验证密码 6至20位的字母+数字
  */
 export function validatePass(value){
     let reg = /^(?!\D+$)(?![^a-zA-Z]+$)\S{6,20}$/;
