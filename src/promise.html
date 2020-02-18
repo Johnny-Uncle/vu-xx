@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>promise</title>
+</head>
+<body>
+    <script>
+        // 参数： resolve,reject,all,race
+        let promise = new Promise((resolve, reject) => {
+
+        });
+
+        promise.then( res => {
+
+        }).catch( err => {
+
+        })
+
+        // 链式
+        function promise1(status) {
+            return new  promise((resolve,reject) => {
+                if ( status ) {
+                    console.log('第1个promise成功')
+                    resolve('返回第1个promise成功')
+                }
+                if(!status) {
+                    console.log('第1个promise失败')
+                    reject('返回第1个promise失败')
+                }
+            })
+        }
+        function promise2(status) {
+            return new  promise((resolve,reject) => {
+                if ( status ) {
+                    console.log('第2个promise成功')
+                    resolve('返回第2个promise成功')
+                }
+                if(!status) {
+                    console.log('第2个promise失败')
+                    reject('返回第2个promise失败')
+                }
+            })
+        } function promise3(status) {
+            return new  promise((resolve,reject) => {
+                if ( status ) {
+                    console.log('第3个promise成功')
+                    resolve('返回第3个promise成功')
+                }
+                if(!status) {
+                    console.log('第3个promise失败')
+                    reject('返回第3个promise失败')
+                }
+            })
+        }
+
+
+        promise1(true).then((res) =>{ //第1个
+            console.log(res)
+            return promise2(true)
+        }).then(res => {             //第2个
+            console.log(res)
+            return promise3(true)
+        }).then((res) => {
+            console.log(res);
+        }).catch( err =>{
+            console.log(err)
+        })
+
+        // all方法，数组内有promise必须全部返回resolve，才会执行then回调,只要一个返回reject就会执行catch
+        promise.all([promise1(true),promise2(true)]).then( res => {
+            console.log('全部调用成功')
+        }) .catch(err => {
+            console.log('有些可能失败')
+        })
+
+        // race数组，执行第一个promise1,值:true返回resolve.只判断前面一个值
+        // race数组，执行第一个promise1,值:false返回reject.只判断前面一个值
+        promise.race([promise1(true),promise2(true)]).then( res => {
+            console.log('全部调用成功')
+        }) .catch(err => {
+            console.log('有些可能失败')
+        })
+
+    </script>
+
+</body>
+</html>
