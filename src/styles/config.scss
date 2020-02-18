@@ -1,0 +1,16 @@
+// < 后台框架尺寸 >
+// 菜单宽度
+$navMenuMax: 250px;
+$navMenuMin: 64px;
+// 主颜色
+$mainColor: #f56c6c;
+
+
+// 封装过度样式方法
+@mixin webkit($style,$value){
+  -webkit-#{$style}: $value;
+  -moz-#{$style}: $value;
+  -o-#{$style}: $value;
+  -ms-#{$style}: $value;
+  #{$style}: $value;
+}

@@ -123,8 +123,8 @@ export default {
       * */
       // 表单绑定数据
       const ruleForm = reactive({
-        password: "",
-        username: "",
+        password: "JN123456",
+        username: "1541557070@qq.com",
         passwords: "",
         code: ""
        });
@@ -192,13 +192,21 @@ export default {
            password: ruleForm.password,
            code: ruleForm.code
          };
-         LoginApi(repuestData).then( response => {
+         /* ^^^^^^^^^^^^^^^^^  login接口练习store.actions  ^^^^^^^^^^^^^^^^^^^^^ */
+         root.$store.dispatch('login/login',repuestData).then(response => {
+           root.$router.push({
+             name: 'Console'
+           })
+         }).catch( error => {})
+        /* LoginApi(repuestData).then( response => {
            console.log(response);
-           console.log(111)
+           root.$router.push({
+             name: 'Console'
+           })
          }).catch( error => {
            console.log(222);
            console.log(error)
-         })
+         })*/
        });
 
        /*
